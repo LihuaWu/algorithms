@@ -1,3 +1,2 @@
 # algorithms
-sd
 algorithm collection
