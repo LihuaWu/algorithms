@@ -1,3 +1,6 @@
+#include <ctype.h>
+
+
 #include <string>
 #include <iostream>
 #include <map>
