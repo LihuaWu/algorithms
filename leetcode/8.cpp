@@ -47,16 +47,14 @@ int myAtoi(string str) {
     while(i < size) {
         if (!isdigit(str[i])) break;
         ret = 10 * ret + str[i] - '0';
-        if (ret > std::numeric_limits<int>::max()) {
+        if (ret * sign > std::numeric_limits<int>::max()) {  
             return std::numeric_limits<int>::max();
+        } else if (ret * sign < std::numeric_limits<int>::min()) {
+            return std::numeric_limits<int>::min();
         }
         i++;
     }
-    ret = ret * sign;
-    if (ret > std::numeric_limits<int>::max() || ret < std::numeric_limits<int>::min()) {
-        return std::numeric_limits<int>::max();
-    }
-    return ret;
+    return sign * ret;
 }
 
 int main() {
@@ -73,7 +71,11 @@ int main() {
         {"     123", 123},
         {"123abcde", 123},
         {"abc1323", 0},
-        {"21474836499", std::numeric_limits<int>::max() },
+        {"+2147483647", std::numeric_limits<int>::max() },
+        {"+2147483648", std::numeric_limits<int>::max() },
+        {"-2147483648", std::numeric_limits<int>::min() },
+        {"-2147483649", std::numeric_limits<int>::min() },
+
     };
     int size = sizeof(cases)/sizeof(Case);
 
