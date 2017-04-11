@@ -8,6 +8,7 @@ algorithm collection
 | 6 | [ZigZag Conversion](https://leetcode.com/problems/zigzag-conversion/#/description) | [C++](./leetcode/6.cpp) | Medium |
 | 7 | [Reverse Integer](https://leetcode.com/problems/reverse-integer/#/description) | [C++](./leetcode/7.cpp) | Easy |
 | 8 | [atoi](https://oj.leetcode.com/problems/string-to-integer-atoi/) | [C++](./leetcode/8.cpp) | Easy |
+| 9 | [Palindrome Number](https://leetcode.com/problems/palindrome-number/#/description) | [C++](./leetcode/9.cpp) | Easy |
 
 ## Codeforces
 | #  | Title | Solution | Tag |
