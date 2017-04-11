@@ -13,4 +13,4 @@ algorithm collection
 | #  | Title | Solution | Tag |
 |----| ----- | -------- | --- |
 | 1A | [Theatre Square](http://codeforces.com/problemset/problem/1/A) | [C++](./cf/1A.cpp) | math |
-
+| 1B | [Spread Sheet](http://codeforces.com/problemset/problem/1/B) | [C++](./cf/1B.cpp) | math, implementation |
