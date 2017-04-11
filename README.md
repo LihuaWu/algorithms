@@ -10,6 +10,7 @@ algorithm collection
 | 8 | [atoi](https://oj.leetcode.com/problems/string-to-integer-atoi/) | [C++](./leetcode/8.cpp) | Easy |
 
 ## Codeforces
-| # | Title | Solution | Difficulty |
-|---| ----- | -------- | ---------- |
+| #  | Title | Solution | Tag |
+|----| ----- | -------- | --- |
+| 1A | [Theatre Square](http://codeforces.com/problemset/problem/1/A) | [C++](./cf/1A.cpp) | math |
 
