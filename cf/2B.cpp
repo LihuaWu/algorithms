@@ -28,6 +28,68 @@
  * DDRR
  * */
 
+#include <stdio.h>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+int f[1001][1001][2]; //calculate mid result
+bool g[1001][1001][2]; // store path 
+
+int n, i, j, k;
+
+int x = 0;
+
+void print(int x, int y) {
+    if (x == 1 && y == 1) return;
+    if (g[x][y][k]) {
+        print(x-1, y); 
+        putchar('D');
+    } else {
+        print(x, y-1);
+        putchar('R');
+    }
+}
+
 int main() {
+    scanf("%d", &n);
+
+    for (i = 2; i <= n; i++) {
+        f[0][i][0] = 9999;
+        f[0][i][1] = 9999;
+        f[i][0][0] = 9999;
+        f[i][0][1] = 9999;
+    }
+
+    for (i = 1; i <= n; i++) {
+        for (j = 1; j <= n; j++) {
+            scanf("%d", &k);
+            if (k == 0) { x = i; }
+            else {
+                for (; (k&1) == 0; k >>= 1) {
+                    f[i][j][0]++;
+                }
+                for (; (k%5) == 0; k /= 5) {
+                    f[i][j][1]++;
+                }
+            }
+            for (k = 0; k < 2; k++) {
+                g[i][j][k] = (f[i-1][j][k] < f[i][j-1][k]);
+                f[i][j][k] += (g[i][j][k] ? f[i-1][j][k] : f[i][j-1][k]);
+            }
+        }
+    }
+
+    k = (f[n][n][1] < f[n][n][0]);
+    if (x > 0 && f[n][n][k] > 1) {
+        puts("1");
+        for (i = 2; i <= x; i++) putchar('D');
+        for (i = 2; i <= n; i++) putchar('R');
+        for (i = x + 1; i <= n; i++) putchar('D');
+    } else {
+        printf("%d\n", f[n][n][k]);
+        print(n, n);
+    }
     return 0;
 }
