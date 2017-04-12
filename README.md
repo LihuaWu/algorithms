@@ -12,6 +12,7 @@ algorithm collection
 | 11 | [Container With Most Water](https://leetcode.com/problems/container-with-most-water/#/description) | [C++](./leetcode/11.cpp) | Medium |
 | 12 | [Integer to Roman](https://leetcode.com/problems/integer-to-roman/#/description) | [C++](./leetcode/12.cpp) | Easy |
 | 13 | [Roman to Integer](https://leetcode.com/problems/roman-to-integer/#/description) | [C++](./leetcode/13.cpp) | Easy |
+| 14 | [Longest common prefix](https://leetcode.com/problems/longest-common-prefix/#/description) | [C++](./leetcode/14.cpp) | Easy |
 
 ## Codeforces
 | #  | Title | Solution | Tag |
