@@ -1,0 +1,5 @@
+#env bash
+
+set -euo pipefail
+
+g++48 $1.cpp -std=c++11
