@@ -2,14 +2,16 @@
 algorithm collection
 
 ## Leetcode
-| # | Title | Solution | Difficulty |
-|---| ----- | -------- | ---------- |
-| 3 | [Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/#/description) | [C++](./leetcode/3.cpp) | Medium | 
-| 6 | [ZigZag Conversion](https://leetcode.com/problems/zigzag-conversion/#/description) | [C++](./leetcode/6.cpp) | Medium |
-| 7 | [Reverse Integer](https://leetcode.com/problems/reverse-integer/#/description) | [C++](./leetcode/7.cpp) | Easy |
-| 8 | [atoi](https://oj.leetcode.com/problems/string-to-integer-atoi/) | [C++](./leetcode/8.cpp) | Easy |
-| 9 | [Palindrome Number](https://leetcode.com/problems/palindrome-number/#/description) | [C++](./leetcode/9.cpp) | Easy |
-| 11| [Container With Most Water](https://leetcode.com/problems/container-with-most-water/#/description) | [C++](./leetcode/11.cpp) | Medium |
+| #  | Title | Solution | Difficulty |
+|----| ----- | -------- | ---------- |
+| 3  | [Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/#/description) | [C++](./leetcode/3.cpp) | Medium | 
+| 6  | [ZigZag Conversion](https://leetcode.com/problems/zigzag-conversion/#/description) | [C++](./leetcode/6.cpp) | Medium |
+| 7  | [Reverse Integer](https://leetcode.com/problems/reverse-integer/#/description) | [C++](./leetcode/7.cpp) | Easy |
+| 8  | [atoi](https://oj.leetcode.com/problems/string-to-integer-atoi/) | [C++](./leetcode/8.cpp) | Easy |
+| 9  | [Palindrome Number](https://leetcode.com/problems/palindrome-number/#/description) | [C++](./leetcode/9.cpp) | Easy |
+| 11 | [Container With Most Water](https://leetcode.com/problems/container-with-most-water/#/description) | [C++](./leetcode/11.cpp) | Medium |
+| 12 | [Integer to Roman](https://leetcode.com/problems/integer-to-roman/#/description) | [C++](./leetcode/12.cpp) | Easy |
+| 13 | [Roman to Integer](https://leetcode.com/problems/roman-to-integer/#/description) | [C++](./leetcode/13.cpp) | Easy |
 
 ## Codeforces
 | #  | Title | Solution | Tag |
