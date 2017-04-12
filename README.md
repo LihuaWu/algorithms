@@ -13,6 +13,7 @@ algorithm collection
 | 12 | [Integer to Roman](https://leetcode.com/problems/integer-to-roman/#/description) | [C++](./leetcode/12.cpp) | Easy |
 | 13 | [Roman to Integer](https://leetcode.com/problems/roman-to-integer/#/description) | [C++](./leetcode/13.cpp) | Easy |
 | 14 | [Longest common prefix](https://leetcode.com/problems/longest-common-prefix/#/description) | [C++](./leetcode/14.cpp) | Easy |
+| 17 | [Letter combination of a phone number](https://leetcode.com/problems/letter-combinations-of-a-phone-number/#/description) | [C++](./leetcode/17.cpp) | Medium |
 
 ## Codeforces
 | #  | Title | Solution | Tag |
