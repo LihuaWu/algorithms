@@ -21,3 +21,4 @@ algorithm collection
 | 1A | [Theatre Square](http://codeforces.com/problemset/problem/1/A) | [C++](./cf/1A.cpp) | math |
 | 1B | [Spread Sheet](http://codeforces.com/problemset/problem/1/B) | [C++](./cf/1B.cpp) | math, implementation |
 | 2A | [Winner](http://codeforces.com/problemset/problem/2/A) | [C++](./cf/2A.cpp) | hashing, implementation |
+| 4D | [Mysterious Present](http://codeforces.com/problemset/problem/4/D) | [C++](./cf/4D.cpp) | dp, recursion |
