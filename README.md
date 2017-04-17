@@ -23,3 +23,4 @@ algorithm collection
 | 2A | [Winner](http://codeforces.com/problemset/problem/2/A) | [C++](./cf/2A.cpp) | hashing, implementation |
 | 4D | [Mysterious Present](http://codeforces.com/problemset/problem/4/D) | [C++](./cf/4D.cpp) | dp, recursion |
 | 5C | [Longest Regular Bracket Sequence](http://codeforces.com/problemset/problem/5/C) | [C++](./cf/5C.cpp) | dp, greedy |
+| 6C | [Alice, Bob and Chocolate](http://codeforces.com/problemset/problem/6/C) | [C++](./cf/6C.cpp) | greedy, two pointers |
