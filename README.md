@@ -24,3 +24,4 @@ algorithm collection
 | 4D | [Mysterious Present](http://codeforces.com/problemset/problem/4/D) | [C++](./cf/4D.cpp) | dp, recursion |
 | 5C | [Longest Regular Bracket Sequence](http://codeforces.com/problemset/problem/5/C) | [C++](./cf/5C.cpp) | dp, greedy |
 | 6C | [Alice, Bob and Chocolate](http://codeforces.com/problemset/problem/6/C) | [C++](./cf/6C.cpp) | greedy, two pointers |
+| 6D | [Lizards and Basements 2](http://codeforces.com/problemset/problem/6/D) | [C++](./cf/6D.cpp) | dp |
