@@ -36,7 +36,60 @@
  * 4
  * 2 2 3 3 
  * */
+#include <limits>
+#include <iostream>
+
+using namespace std;
+
+int n, a, b;
+int h[11], res[11], tmp[11];
+
+int ans = numeric_limits<int>::max();
+
+void dfs(int start, int cnt) {
+    if (cnt >= ans) return;
+    if (start == n) {
+        ans = cnt;
+        for (int i = 1; i <= n; i++) {
+            res[i] = tmp[i];
+        }
+    } else {
+        for (int i = 0; ; i++) {
+            if (h[start-1] - i * b >= 0) continue; //left prior, cutting edges.
+            if (i + cnt >= ans) break; //optimum
+            if (start == n-1 && h[start+1] - i * b >= 0) continue; //cutting edges.
+
+            h[start-1] -= i * b;
+            h[start+1] -= i * b;
+            h[start] -= i * a;
+
+            tmp[start] = i;
+            dfs(start+1, cnt+i);
+
+            h[start-1] += i * b;
+            h[start+1] += i * b;
+            h[start] += i * a;
+
+            if (h[start]-i*a<0 && h[start+1]-i*b<0) break;
+        }
+    }
+}
 
 int main() {
+
+    cin >> n >>a >> b;
+    for (int i = 1; i <= n; i++) {
+        cin >> h[i];
+    }
+    dfs(2, 0);
+    cout << ans << "\n";
+
+    for (int i = 2; i < n; i++) {
+        for (int j = 0; j < res[i];++j) {
+            cout << i << " ";
+        }
+    }
+
     return 0;
+
 }
