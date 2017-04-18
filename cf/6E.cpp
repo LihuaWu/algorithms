@@ -47,6 +47,7 @@
 using namespace std;
 
 #define  MAX numeric_limits<int>::max()
+#define N 1000000
 
 //segment tree implementation.
 
@@ -57,12 +58,12 @@ struct SgNode {
     int maxv, minv; //max value and min value
 };
 
-SgNode p[300];
+SgNode p[N];
 
 int cnt = 0;
 
 int n, k;
-int h[300];
+int h[N];
 
 void setTree(int l, int r) {
     cnt++;
@@ -136,7 +137,7 @@ void printTree() {
 
 struct Res {
     int l, r;
-} res[300];
+} res[N];
 
 int main() {
     cin >> n >> k;
@@ -152,13 +153,12 @@ int main() {
 
 //    printTree();
 
-    for (int i = 1, j = 1; j <= n; j++) {
-        if (getmax(i, j, 1) - getmin(i, j, 1) > k) {
+    for (int i = 1, j = 1; j <= n;) {
+        while (getmax(i, j, 1) - getmin(i, j, 1) > k) {
             i++;
-            continue;
         }
         int len = j-i+1;
-    //    printf("len=%d i=%d j=%d max=%d min=%d k=%d\n", len, i, j, getmax(i, j, 1), getmin(i, j, 1), k);
+//        printf("len=%d i=%d j=%d max=%d min=%d k=%d\n", len, i, j, getmax(i, j, 1), getmin(i, j, 1), k);
         if (len > maxele) {
             maxele = len;
             cnt = 0;
@@ -170,6 +170,7 @@ int main() {
             res[cnt].r = j;
             cnt++;
         }
+        j++;
     }
 
     printf("%d %d\n", maxele, cnt);
