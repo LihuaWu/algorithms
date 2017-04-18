@@ -25,3 +25,4 @@ algorithm collection
 | 5C | [Longest Regular Bracket Sequence](http://codeforces.com/problemset/problem/5/C) | [C++](./cf/5C.cpp) | dp, greedy |
 | 6C | [Alice, Bob and Chocolate](http://codeforces.com/problemset/problem/6/C) | [C++](./cf/6C.cpp) | greedy, two pointers |
 | 6D | [Lizards and Basements 2](http://codeforces.com/problemset/problem/6/D) | [C++](./cf/6D.cpp) | dp |
+| 6E | [Exposition](http://codeforces.com/problemset/problem/6/E) | [C++](./cf/6E.cpp) | segment tree, range query |
