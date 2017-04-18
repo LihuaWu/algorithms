@@ -44,6 +44,8 @@ void Manachar() {
     int mx=1,id=1;
     For (i,1,n) {
         p[i]=max(1,min(p[2*id-i],mx-i));
+//        p[i] = 1;
+        printf("i=%d id=%d mx=%d p[2*%d-%d]=%d, mx-i=%d, p[%d]=%d Res[%d]=%d %d\n", i, id, mx, id, i, p[2*id-i],  mx-i, i, p[i], i, Res[i], Res[i+n]);
         while (i-p[i]>=1 && A[i-p[i]]==A[i+p[i]] && i+p[i]<=n) p[i]++;
         if (i+p[i]-1>=mx) mx=i+p[i]-1,id=i;
         if (i-p[i]+1==1) {
@@ -61,7 +63,15 @@ int main() {
     For (i,0,Len-1)
         A[++n]=s[i],A[++n]='#';
     n--;
+    for (int i = 1; i <= n; i++) {
+        //printf("%c", A[i]);
+    }
+    //printf("\n");
     Manachar();
+
+    for (int i = 0; i < n+2; i++) {
+        //printf("Res[%d]=%d, p[%d]=%d\n", i, Res[i], i, p[i]);
+    }
     printf("%d\n",Ans);
     return 0;
 }
