@@ -38,6 +38,148 @@
  * 3 4
  * */
 
+#include <stdio.h>
+
+#include <limits>
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+
+#define  MAX numeric_limits<int>::max()
+
+//segment tree implementation.
+
+struct SgNode {
+    int lc, rc; // left(right)child
+    int value;
+    int l, r; //range
+    int maxv, minv; //max value and min value
+};
+
+SgNode p[300];
+
+int cnt = 0;
+
+int n, k;
+int h[300];
+
+void setTree(int l, int r) {
+    cnt++;
+    int v = cnt;
+    p[v].l = l, p[v].r = r;
+    p[v].lc = 0, p[v].rc = 0;
+    p[v].maxv = 0, p[v].minv = MAX;
+
+    if (r-l > 0) {
+        int mid = l + r >> 1;
+        p[v].lc = cnt + 1;
+        setTree(l, mid);
+        p[v].rc = cnt + 1;
+        setTree(mid+1, r);
+    }
+}
+
+void insert(int l, int r, int v, int value) {
+    if (l <= p[v].l && r >= p[v].r) {
+        p[v].value = p[v].maxv = p[v].minv = value;
+        return;
+    }
+    int mid = p[v].l + p[v].r >> 1;
+    if (l <= mid && p[v].lc) {
+        insert(l, r, p[v].lc, value);
+        p[v].maxv = max(p[v].maxv, p[p[v].lc].maxv);
+        p[v].minv = min(p[v].minv, p[p[v].lc].minv);
+    }
+    if (r > mid && p[v].rc) {
+        insert(l, r, p[v].rc, value);
+        p[v].maxv = max(p[v].maxv, p[p[v].rc].maxv);
+        p[v].minv = min(p[v].minv, p[p[v].rc].minv);
+    }
+}
+
+int getmax(int l, int r, int v) {
+    if (l <= p[v].l && r >= p[v].r) {
+        return p[v].maxv;
+    }
+    int ret = 0;
+    int mid = p[v].l + p[v].r >> 1;
+    if (l <= mid && p[v].lc) {
+        ret = max(ret, getmax(l, r, p[v].lc));
+    }
+    if (r > mid && p[v].rc) {
+        ret = max(ret, getmax(l, r, p[v].rc));
+    }
+    return ret;
+}
+
+int getmin(int l, int r, int v) {
+    if (l <= p[v].l && r >= p[v].r) {
+        return p[v].minv;
+    }
+    int ret = MAX;
+    int mid = p[v].l + p[v].r >> 1;
+    if (l <= mid && p[v].lc) {
+        ret = min(ret, getmin(l, r, p[v].lc));
+    }
+    if (r > mid && p[v].rc) {
+        ret = min(ret, getmin(l, r, p[v].rc));
+    }
+    return ret;
+}
+
+void printTree() {
+    for (int i = 1; i <= 2 * n - 1; i++) {
+        printf("i = %d lc = %d rc = %d l = %d r = %d value=%d maxv=%d minv=%d\n", i, p[i].lc, p[i].rc, p[i].l, p[i].r, p[i].value, p[i].maxv, p[i].minv);
+    }
+}
+
+struct Res {
+    int l, r;
+} res[300];
+
 int main() {
+    cin >> n >> k;
+    setTree(1, n);
+
+    for (int i = 1; i <= n; i++) {
+        cin >> h[i];
+        insert(i, i, 1, h[i]);
+    }
+
+    int cnt = 0;
+    int maxele = 0;
+
+//    printTree();
+
+    for (int i = 1, j = 1; j <= n; j++) {
+        if (getmax(i, j, 1) - getmin(i, j, 1) > k) {
+            i++;
+            continue;
+        }
+        int len = j-i+1;
+    //    printf("len=%d i=%d j=%d max=%d min=%d k=%d\n", len, i, j, getmax(i, j, 1), getmin(i, j, 1), k);
+        if (len > maxele) {
+            maxele = len;
+            cnt = 0;
+            res[cnt].l = i;
+            res[cnt].r = j;
+            cnt++;
+        } else if (len == maxele) {
+            res[cnt].l = i;
+            res[cnt].r = j;
+            cnt++;
+        }
+    }
+
+    printf("%d %d\n", maxele, cnt);
+    for (int i = 0; i < cnt; i++) {
+        printf("%d %d\n", res[i].l, res[i].r);
+    }
+
+//    printTree();
+//    printf("getmin(2,4,1)=%d\n", getmin(2,4,1));
+//    printf("getmax(1,3,1)=%d\n", getmax(1,3,1));
+
     return 0;
 }
