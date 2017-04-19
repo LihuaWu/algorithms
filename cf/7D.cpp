@@ -42,7 +42,7 @@ int ans, right_bound, left_bound;
 void Manachar() {
     right_bound = 1, left_bound = 1;
     for (int i = 1; i <= n; i++) {
-        p[i] = max(1, min(2 * left_bound - i, right_bound-i));
+        p[i] = max(1, min(p[2*left_bound-i], right_bound-i));
         while (i - p[i] >= 1 && i + p[i] <= n && A[i+p[i]] == A[i-p[i]]) p[i]++;
         if (i+p[i]-1 > right_bound) { 
             right_bound = i+p[i]-1;
