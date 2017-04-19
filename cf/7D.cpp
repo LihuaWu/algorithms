@@ -26,7 +26,50 @@
  * output
  * 6
  * */
+#include <iostream>
+#include <string>
+#include <algorithm>
+
+using namespace std;
+
+#define N 10000000
+char A[N];
+int n;
+
+int p[N], Res[N];
+int ans, right_bound, left_bound;
+
+void Manachar() {
+    right_bound = 1, left_bound = 1;
+    for (int i = 1; i <= n; i++) {
+        p[i] = max(1, min(2 * left_bound - i, right_bound-i));
+        while (i - p[i] >= 1 && i + p[i] <= n && A[i+p[i]] == A[i-p[i]]) p[i]++;
+        if (i+p[i]-1 > right_bound) { 
+            right_bound = i+p[i]-1;
+            left_bound = i;
+        }
+        if (i-p[i]+1 == 1) {
+            if (i%2 == 0) {
+                Res[i+p[i]] = Res[i]+1;
+            } else {
+                Res[i+p[i]] = Res[i-1]+1;
+            }
+            ans += Res[i+p[i]];
+        }
+    }
+}
 
 int main() {
+    string s;
+    cin >> s;
+
+    for (int i = 0; i < s.size(); i++) {
+        A[++n] = s[i];
+        A[++n] = '#';
+    }
+    n--;
+    Manachar();
+    printf("%d", ans);
+
     return 0;
 }
