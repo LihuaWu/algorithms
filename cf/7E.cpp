@@ -126,25 +126,41 @@ using namespace std;
 string s;
 map<string, int> res;
 
+// 单个符号优先级最高, 其次括号，其次乘除，其次加减, 递归相当于栈，
+// 同级运算时自左向右依次计算，但在压栈时，要自右向左, 要不断使其左递归,之后回溯。
+// why?
+// 后进先出。
+
 int eval(int l, int r) {
-    int w = 0;
-    for (int i = l; i < r; i++) {
-        //printf("i = %d, s[%d]=%c w=%d\n", i, i, s[i], w);
+    //op for + -
+    for (int i = r-1, w = 0; i >= l; i--) {
         if (s[i] == '(') w++;
         else if (s[i] == ')') w--;
         if (w == 0 && (s[i] == '+' || s[i] == '-')) {
             int L = eval(l, i), R = eval(i+1, r);
-            return L && R && (s[i] != '-' || R > 1);
+            int result = L && R && (s[i] != '-' || R > 1);
+            printf("left s=%s, L=%d right s=%s R=%d total s=%s L+R=%d\n", s.substr(l, i-l).c_str(), L, s.substr(i+1, r-i-1).c_str(), R, s.substr(l, r-l).c_str(), result);
+            return result;
         }
+    }
+
+    //op for * /
+    for (int i = r-1, w = 0; i >= l; i--) {
+        if (s[i] == '(') w++;
+        else if (s[i] == ')') w--;
         if (w == 0 && (s[i] == '*' || s[i] == '/')) {
             int L = eval(l, i), R = eval(i+1, r);
-            return (L>1) && (R > 1) && (s[i] != '/' || R > 2) ? 2 : 0; 
+            int result = (L>1) && (R > 1) && (s[i] != '/' || R > 2) ? 2 : 0; 
+            printf("left s=%s, L=%d right s=%s R=%d total s=%s L+R=%d\n", s.substr(l, i-l).c_str(), L, s.substr(i+1, r-i-1).c_str(), R, s.substr(l, r-l).c_str(), result);
+            return result;
         }
     }
     if (s[l] == '(') {
         return eval(l+1, r-1) ? 3 : 0;
     }
-    string u(s.substr(l, r-l));
+    string u(s.substr(l, r-l)); 
+                                
+                                
     return res[u] ? res[u] : 3;
 }
 
@@ -172,10 +188,7 @@ int main() {
         cin >> name;
         res[name] = G();
     }
-
-
     cout << (G() ? "OK" : "Suspicious");
-
     return 0;
 }
 
