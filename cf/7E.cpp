@@ -127,7 +127,9 @@ string s;
 map<string, int> res;
 
 int eval(int l, int r) {
-    for (int i = l, w = 0; i < r; i++) {
+    int w = 0;
+    for (int i = l; i < r; i++) {
+        //printf("i = %d, s[%d]=%c w=%d\n", i, i, s[i], w);
         if (s[i] == '(') w++;
         else if (s[i] == ')') w--;
         if (w == 0 && (s[i] == '+' || s[i] == '-')) {
@@ -139,7 +141,7 @@ int eval(int l, int r) {
             return (L>1) && (R > 1) && (s[i] != '/' || R > 2) ? 2 : 0; 
         }
     }
-    if (s[0] == '(') {
+    if (s[l] == '(') {
         return eval(l+1, r-1) ? 3 : 0;
     }
     string u(s.substr(l, r-l));
