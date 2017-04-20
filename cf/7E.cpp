@@ -184,7 +184,7 @@ int main() {
     string dummy;
     string name;
     for (int i = 0; i < n; i++) {
-        cin >> dummy;
+        scanf(" #%*s");
         cin >> name;
         res[name] = G();
     }
