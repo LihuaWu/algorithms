@@ -84,28 +84,95 @@ Suspicious
 
  * */
 
+/*
+ * state value description
+ *
+ *  s1     0     invalid  
+ *  s2     1     invalid when connected by * / or be second op of - 
+ *  s3     2     invalid when be second op of /
+ *  s4     3     valid 
+ *
+ * State transition rules
+ *
+ * let t be (t1)
+ *  t1 != s1 -> t = s4
+ *  otherwise -> t = s1
+ *
+ *let t be t1 op t2
+ * 
+ * t1 || t2 = s1, -> t = s1
+ *
+ * op = +
+ *    t -> s2
+ * op = -
+ *    t2 = s2 ->t = s1  
+ *    otherwise t -> s2 
+ * op = *
+ *   t1 = s2 || t2 = s2 || t2 = s3 t-> s1
+ *   otherwise t-> s3
+ * op = /
+ *   t2 = s3 t-> s1
+ *   otherwise t-> s3
+ *
+ * */
+
 #include <stdio.h>
 
 #include <iostream>
 #include <string>
+#include <map>
 
 using namespace std;
+string s;
+map<string, int> res;
 
-int eval(string s) {
-    return 1;
+int eval(int l, int r) {
+    for (int i = l, w = 0; i < r; i++) {
+        if (s[i] == '(') w++;
+        else if (s[i] == ')') w--;
+        if (w == 0 && (s[i] == '+' || s[i] == '-')) {
+            int L = eval(l, i), R = eval(i+1, r);
+            return L && R && (s[i] != '-' || R > 1);
+        }
+        if (w == 0 && (s[i] == '*' || s[i] == '/')) {
+            int L = eval(l, i), R = eval(i+1, r);
+            return (L>1) && (R > 1) && (s[i] != '/' || R > 2) ? 2 : 0; 
+        }
+    }
+    if (s[0] == '(') {
+        return eval(l+1, r-1) ? 3 : 0;
+    }
+    string u(s.substr(l, r-l));
+    return res[u] ? res[u] : 3;
 }
+
+int G() {
+    string tmp;
+    getline(cin, tmp);
+    s = "";
+    int m = 0;
+    for (int i = 0; i < tmp.size(); i++) {
+        if (tmp[i] != ' ') {
+            s += tmp[i];
+        }
+    }
+    return eval(0, s.size());
+}
+
 
 int main() {
     int n;
     cin >> n;
-    string dummy, expr;
+    string dummy;
+    string name;
     for (int i = 0; i < n; i++) {
         cin >> dummy;
-        getline(cin, expr); 
-        eval(expr);
+        cin >> name;
+        res[name] = G();
     }
-    getline(cin, expr);
-    cout << (eval(expr) ? "OK" : "Suspicious");
+
+
+    cout << (G() ? "OK" : "Suspicious");
 
     return 0;
 }
