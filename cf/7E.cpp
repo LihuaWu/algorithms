@@ -139,7 +139,7 @@ int eval(int l, int r) {
         if (w == 0 && (s[i] == '+' || s[i] == '-')) {
             int L = eval(l, i), R = eval(i+1, r);
             int result = L && R && (s[i] != '-' || R > 1);
-            printf("left s=%s, L=%d right s=%s R=%d total s=%s L+R=%d\n", s.substr(l, i-l).c_str(), L, s.substr(i+1, r-i-1).c_str(), R, s.substr(l, r-l).c_str(), result);
+//            printf("left s=%s, L=%d right s=%s R=%d total s=%s L+R=%d\n", s.substr(l, i-l).c_str(), L, s.substr(i+1, r-i-1).c_str(), R, s.substr(l, r-l).c_str(), result);
             return result;
         }
     }
@@ -151,7 +151,7 @@ int eval(int l, int r) {
         if (w == 0 && (s[i] == '*' || s[i] == '/')) {
             int L = eval(l, i), R = eval(i+1, r);
             int result = (L>1) && (R > 1) && (s[i] != '/' || R > 2) ? 2 : 0; 
-            printf("left s=%s, L=%d right s=%s R=%d total s=%s L+R=%d\n", s.substr(l, i-l).c_str(), L, s.substr(i+1, r-i-1).c_str(), R, s.substr(l, r-l).c_str(), result);
+ //          printf("left s=%s, L=%d right s=%s R=%d total s=%s L+R=%d\n", s.substr(l, i-l).c_str(), L, s.substr(i+1, r-i-1).c_str(), R, s.substr(l, r-l).c_str(), result);
             return result;
         }
     }
@@ -161,7 +161,7 @@ int eval(int l, int r) {
     string u(s.substr(l, r-l)); 
                                 
                                 
-    return res[u] ? res[u] : 3;
+    return res.count(u) ? res[u] : 3;
 }
 
 int G() {
