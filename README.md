@@ -27,5 +27,5 @@ algorithm collection
 | 6C | [Alice, Bob and Chocolate](http://codeforces.com/problemset/problem/6/C) | [C++](./cf/6C.cpp) | greedy, two pointers |
 | 6D | [Lizards and Basements 2](http://codeforces.com/problemset/problem/6/D) | [C++](./cf/6D.cpp) | dp |
 | 6E | [Exposition](http://codeforces.com/problemset/problem/6/E) | [C++](./cf/6E.cpp) | segment tree, range query |
-| 7D | [Palindrome Degree](http://codeforces.com/problemset/problem/7/D) | [C++](./cf/7D.cpp) | dp, hashing, TLE |
+| 7D | [Palindrome Degree](http://codeforces.com/problemset/problem/7/D) | [C++](./cf/7D.cpp) | dp, hashing, TLE(Time Limited Error, NotFixed) |
 | 7E | [Defining Macros](http://codeforces.com/problemset/problem/7/E) | [C++](./cf/7E.cpp) | recursion, dp, expression parsing |
