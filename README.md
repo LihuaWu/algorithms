@@ -30,4 +30,3 @@ algorithm collection
 | 7D | [Palindrome Degree](http://codeforces.com/problemset/problem/7/D) | [C++](./cf/7D.cpp) | dp, hashing, TLE(Time Limited Error, NotFixed) |
 | 7E | [Defining Macros](http://codeforces.com/problemset/problem/7/E) | [C++](./cf/7E.cpp) | recursion, dp, expression parsing |
 | 8B | [Obsession With Robots](http://codeforces.com/problemset/problem/8/B) | [C++](./cf/8B.cpp) | greedy |
-
