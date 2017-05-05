@@ -68,12 +68,10 @@ int main() {
     }
 
 
+    memset(dp, 0x3f, sizeof(dp));
     dp[0] = 0;
 
-    int t = numeric_limits<int>::max();
-    for (int i = 1; i < (1<<24)-1; i++) {
-        dp[i] = t/2;
-    }
+    int t = 0x3f3f3f3f;
     for (int i = 0; i < (1<<n)-1; i++) {
         if (dp[i] < t) {
             for (int j = 0; j < n; j++) {
@@ -88,7 +86,7 @@ int main() {
                            }
                        }
                    } 
-//                   break;
+                   break;
                 }
             }
         }
@@ -98,9 +96,11 @@ int main() {
 
     for (int i = (1<<n)-1; i; i = path[i]) {
         for (int j = i^path[i]; j; j -=j&(-j)) {
-            cout << int(log(j&(-j))/log(2)+1) << " ";
+            cout << int(log(j&(-j))/log(2)+1+1e-8) << " ";
         }
         cout << 0 << " ";
     }
     return 0;
 }
+
+
