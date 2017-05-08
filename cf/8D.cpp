@@ -39,6 +39,35 @@
  *  2.0000000000
  * */
 
+#include <math.h>
+#include <stdio.h>
+
+#include <iostream>
+
+using namespace std;
+
+double dist(int x1, int y1, int x2, int y2) {
+    int dx = x1-y1;
+    int dy = x2-y2;
+    return sqrt(dx*dx+dy*dy);
+}
+
 int main() {
+    int t1, t2, cx, cy, hx, hy, sx, sy;
+    cin >> t1 >> t2 >>cx >> cy >> hx >> hy >> sx >> sy;
+
+    double dcs = dist(cx, cy, sx, sy);
+    double dsh = dist(sx, sy, hx, hy);
+    double dch = dist(cx, cy, hx, hy);
+
+    double T1 = dcs + dsh + t1;
+    double T2 = dch + t2;
+
+    if (T1 < T2 || fabs(T1-T2) < 1e-6) {
+        cout << T1;
+        return 0;
+    }
+
+
     return 0;
 }
