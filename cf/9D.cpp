@@ -64,7 +64,7 @@ int64_t dp(int i, int j) {
     int64_t& res = dp_array[i][j];
     if (i == 0) {
         res = 1;
-    } else if (j == 0) {
+    } else if (j == 1) {
         res = 0;
     }else if (i < j) {
         res = cart(i);
@@ -81,7 +81,7 @@ int main() {
     int n, k;
     cin >> n >> k;
     int64_t a = cart(n);
-    int64_t b = dp(n, k-1);
+    int64_t b = dp(n, k);
     cout << (a-b) << "\n";
     return 0;
 }
