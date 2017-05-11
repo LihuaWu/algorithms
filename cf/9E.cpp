@@ -70,7 +70,7 @@ int main() {
         cout << "NO\n";
         return 0;
     }
-    cout << "YES\n";
+    cout <<"YES\n"<<(n-m)<<"\n";
     for (int i=1; i<=n; i++) {
         for (int j=i+1; j<=n; j++) {
             int pi = get(i);
