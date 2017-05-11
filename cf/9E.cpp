@@ -29,6 +29,26 @@
 
 using namespace std;
 
+#define N 52
+
+vector<int> g[N];
+bool vis[N];
+
+int fa[N];
+
+bool dfs(int i) {
+
+}
+
 int main() {
+
+    int n, m;
+    cin >> n >> m;
+    int u, v;
+    for(int i = 1; i <= m; i++) {
+        cin >> u >> v;
+        g[u].push_back(v);
+        g[v].push_back(u);
+    }
     return 0;
 }
