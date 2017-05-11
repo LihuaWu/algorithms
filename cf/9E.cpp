@@ -31,24 +31,63 @@ using namespace std;
 
 #define N 52
 
-vector<int> g[N];
-bool vis[N];
+int p[N], d[N];
 
-int fa[N];
-
-bool dfs(int i) {
-
+int get(int i) {
+    if (i != p[i]) p[i] = get(p[i]);
+    return p[i];
 }
 
 int main() {
-
     int n, m;
     cin >> n >> m;
+
+    for (int i = 1; i <= n; i++) {
+        p[i] = i;
+    }
     int u, v;
+    bool ok = true;
     for(int i = 1; i <= m; i++) {
         cin >> u >> v;
-        g[u].push_back(v);
-        g[v].push_back(u);
+        d[u]++;
+        d[v]++;
+
+        if (d[u]>2 || d[v]>2) {
+            ok = false;
+            break;
+        }
+        int pu = get(u);
+        int pv = get(v);
+
+        if ( pu==pv && ((i!=n)||i!=m)) {
+            ok = false;
+            break;
+        }
+        p[pu] = pv;
+    }
+
+    if (!ok) {
+        cout << "NO\n";
+        return 0;
+    }
+    cout << "YES\n";
+    for (int i=1; i<=n; i++) {
+        for (int j=i+1; j<=n; j++) {
+            int pi = get(i);
+            int pj = get(j);
+            if (pi!=pj && d[i]<2 && d[j]<2) {
+                d[i]++;
+                d[j]++;
+                cout << i << " " << j << "\n";
+                p[pi] = pj;
+            }
+        }
+    }
+    for (int i = 1; i <= n; i++) {
+        while (d[i] < 2) {
+            cout << i << " ";
+            d[i]++;
+        }
     }
     return 0;
 }
