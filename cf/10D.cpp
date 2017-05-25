@@ -47,7 +47,7 @@ int n, m;
 
 int dp[510][510];
 
-int s[510], t[510]; 
+int s[510], t[510], p[]; 
 
 
 int dodp(int i, int j) {
