@@ -38,9 +38,58 @@
  * */
 
 #include <stdio.h>
+#include <algorithm>
+#include <iostream>
 
 using namespace std;
 
+int n, m;
+
+int dp[510][510];
+
+int s[510], t[510]; 
+
+
+int dodp(int i, int j) {
+    if (i == 0 || j == 0) {
+        dp[i][j] = 0;
+        return dp[i][j];
+    }
+
+    if (dp[i][j] != -1) return dp[i][j]; 
+    else {
+        if (s[i] == t[j]) {
+            int p = i, q = j;
+            for (; p > 0; p--) {
+                if (s[p] < s[i]) break; 
+            }
+            for (; q > 0; q--) {
+                if (t[q] < t[j]) break;
+            }
+            dp[i][j] = max(dodp(p,q)+1, max(dodp(i-1,j), dodp(i, j-1)));
+
+        } else {
+            dp[i][j] = max(dodp(i-1,j), dodp(i, j-1));
+        }
+        return dp[i][j];
+    }
+} 
+
 int main() {
+    cin >> n;
+    for (int i = 1; i <= n; i++) {
+        cin >> s[i];
+    }
+    cin >> m;
+    for (int j = 1; j <= m; j++) {
+        cin >> t[j];
+    }
+
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= m; j++) {
+            dp[i][j] = -1;
+        }
+    }
+    cout << dodp(n, m);
     return 0;
 }
