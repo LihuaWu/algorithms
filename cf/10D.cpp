@@ -40,40 +40,20 @@
 #include <stdio.h>
 #include <algorithm>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
-int n, m;
+int n, m, k;
 
-int dp[510][510];
-
-int s[510], t[510], p[]; 
+int s[510], t[510], par[510], dp[510];
 
 
-int dodp(int i, int j) {
-    if (i == 0 || j == 0) {
-        dp[i][j] = 0;
-        return dp[i][j];
-    }
-
-    if (dp[i][j] != -1) return dp[i][j]; 
-    else {
-        if (s[i] == t[j]) {
-            int p = i, q = j;
-            for (; p > 0; p--) {
-                if (s[p] < s[i]) break; 
-            }
-            for (; q > 0; q--) {
-                if (t[q] < t[j]) break;
-            }
-            dp[i][j] = max(dodp(p,q)+1, max(dodp(i-1,j), dodp(i, j-1)));
-
-        } else {
-            dp[i][j] = max(dodp(i-1,j), dodp(i, j-1));
-        }
-        return dp[i][j];
-    }
-} 
+void print(int k) {
+    if (!k) return;
+    print(par[k]);
+    cout << t[k] << " ";
+}
 
 int main() {
     cin >> n;
@@ -85,11 +65,26 @@ int main() {
         cin >> t[j];
     }
 
-    for (int i = 1; i <= n; i++) {
+    for (int i = 1; i <= n; i++, k = 0) {
         for (int j = 1; j <= m; j++) {
-            dp[i][j] = -1;
+            if (s[i] == t[j]) {
+                dp[j] = dp[k] + 1;
+                par[j]= k;
+            } else if (s[i] > t[j] && dp[j] > dp[k]) {
+                k = j;
+            }
         }
     }
-    cout << dodp(n, m);
+
+    k = 0;
+    int max = 0;
+    for (int i = 1; i <= m; i++) {
+        if (dp[i] > max) {
+            max = dp[i], k = i;
+        }
+
+    }
+    cout << max << "\n";
+    print(k);
     return 0;
 }
