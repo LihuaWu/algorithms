@@ -36,7 +36,7 @@ int add(int x, int v) {
 }
 
 int bsearch(int val) {
-    int l = 1, r = n+1;
+    int l = 0, r = n+1;
     while(l < r) {
         int mid = (l+r)/2;
         if (sum(mid) >= val) {
@@ -65,14 +65,17 @@ int main() {
                 add(val, 1);
             } else if (op == "Q") {
                 for (int i = 1; i <= n; i++) {
-                    printf("sum(%d)=%d\n", i, sum(i));
+                    //printf("sum(%d)=%d\n", i, sum(i));
                 }
                 cin >> val;
                 if (vis[val] == 1) {
                     printf("%d\n", 0);
                 } else {
                     int cnt = sum(val);
-                    printf("%d\n", bsearch(cnt+1)-bsearch(cnt)-1);
+                    int right = bsearch(cnt+1);
+                    int left = bsearch(cnt);
+                    printf("%d\n", right-left-1);
+                   // printf("left=%d right=%d result=%d\n", left, right, right-left-1);
                 }
             } else if (op == "R") {
                 val = data[i--];
