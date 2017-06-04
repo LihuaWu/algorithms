@@ -60,13 +60,11 @@ int main() {
             cin >> op;
             if (op == "D") {
                 cin >> val;
+                if (vis[val] == 1) continue;
                 data[++i] = val;
                 vis[val] = 1;
                 add(val, 1);
             } else if (op == "Q") {
-                for (int i = 1; i <= n; i++) {
-                    //printf("sum(%d)=%d\n", i, sum(i));
-                }
                 cin >> val;
                 if (vis[val] == 1) {
                     printf("%d\n", 0);
