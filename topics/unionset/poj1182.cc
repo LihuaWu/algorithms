@@ -1,3 +1,6 @@
+//Tag: search disjointset
+//tips: 需要把cin换成scanf, 不然提交到poj会TLE
+
 #include <stdio.h>
 #include <string.h>
 
@@ -16,6 +19,7 @@ int fa[N], rank[N];
 void init() {
     for (int i = 1; i <= n; i++) {
         fa[i] = i;
+        rank[i] = 0;
     }
 }
 
@@ -25,8 +29,8 @@ int find(int v) {
         int temp = fa[v];
         fa[v] = find(fa[v]);
         rank[v] = (rank[v] + rank[temp])%3; 
+        return fa[v];
     }
-    return fa[v];
 }
 
 bool check(int x, int y, int d) {
@@ -37,7 +41,7 @@ bool check(int x, int y, int d) {
     int fy = find(y);
 
     if (fx == fy) {
-        int rxy = ((rank[x]-rank[y])%3+3)%3;
+        int rxy = ((rank[x]-rank[y])+3)%3;
         return rxy == d;
     }
     return true;
@@ -56,12 +60,10 @@ void merge(int x, int y, int d) {
 int main () {
     cin >> n >> k;
     ans = 0;
-    ::memset(fa, 0, sizeof(fa));
-    ::memset(rank, 0, sizeof(rank));
     init();
     int d, x, y;
     for (int i = 0; i < k; i++) {
-        cin >> d >> x >> y;
+        scanf("%d %d %d", &d, &x, &y);
         if (!check(x, y, d-1)) {
             ans++;
         } else {
