@@ -1,3 +1,11 @@
+//Tag: search disjoint set with weight
+//tips: 
+//1. 带权并查集
+//2. 当输入数据规模较大时，可以进行离散化，选用新的下标代替原先的数据段
+//3. 当算法正确，但是TLE时，可查看输入数据规模限制是否为百万级别以上，如是的话，使用scanf取代cin,可以解决问题。
+
+
+
 #include <stdio.h>
 #include <string.h>
 
