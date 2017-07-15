@@ -15,23 +15,16 @@ string s;
 int check[N], res[N];
 int ans;
 
-void dfs(int x, int prev, int p, int pidx) {
+void dfs(int x, int prev, int p) {
     int cur = prev*10+(s[x]-'0');
     if (x == s.size()-1) {
-        if (cur < p) return;
+        if (cur < p) return; // no need to continue
         if (ans > cur) {
             ans = cur;
             for (int i = 0; i < s.size()-1; i++) {
                 res[i] = check[i];
             }
         } else if (ans == cur) {
-            bool flag = false;
-            for (int i = 0; i < s.size()-1; i++) {
-                if (res[i] > check[i]) {
-                    flag = true;
-                    break;
-                }
-            }
             for (int i = 0; i < s.size()-1; i++) {
                 res[i] = check[i];
             }
@@ -40,14 +33,14 @@ void dfs(int x, int prev, int p, int pidx) {
     }
     if (cur > p) {
         check[x] = 1;
-        dfs(x+1, 0, cur, x);
+        dfs(x+1, 0, cur);
     }
     check[x] = 0;
-    dfs(x+1, cur, p, pidx);
+    dfs(x+1, cur, p);
 }
 
 void solve() {
-    dfs(0, 0, 0, -1);
+    dfs(0, 0, 0);
     for (int i = 0; i < s.size(); i++) {
         printf("%c", s[i]);
         if (i != s.size()-1 && res[i]) printf(",");
